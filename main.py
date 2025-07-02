@@ -3,7 +3,7 @@ from time import  sleep
 
 print('CRIE SEU PET:')
 nome = input(str('EScolha um nome: '))
-animal = Pet(nome, 50, 50, 50, 50)
+pet = Pet(nome, 50, 50, 50, 50)
 
 while True:
     print('MENU:\n'
