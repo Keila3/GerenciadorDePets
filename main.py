@@ -1,10 +1,29 @@
 from Classe.pet import Pet
 from time import  sleep
-from ferramentas import limpar_tela
+from ferramentas import limpar_tela, salvar_pet, carregar_pet
 
 print('CRIE SEU PET:')
 nome = input(str('EScolha um nome: '))
 pet = Pet(nome, 50, 50, 50, 50)
+
+
+while True:
+        try:
+          print('Gostaria de carregar um pet salvo?\n'
+                  '[1] Sim\n'
+                  '[2] Não\n')
+          opcao = int(input('\n'))
+        except ValueError:
+            print('Digte um número valido')
+
+        if opcao == 1:
+            pet_carregado = carregar_pet()
+            if pet_carregado:
+                pet = pet_carregado
+            break
+        else:
+            break
+
 
 while True:
     limpar_tela()
@@ -39,12 +58,23 @@ while True:
     elif escolha == 5:
         limpar_tela()
         pet.veterinario()
-        sleep(2)
     elif escolha == 6:
         limpar_tela()
-        print('Saindo..')
+        print('Gostaria de salvar o jogo?\n'
+              '[1] Sim\n'
+              '[2] Não\n')
+        l = int(input('...'))
+        if l == 1:
+            salvar_pet(pet)
+            print('Jogo salvo')
+            sleep(1)
+            print('Saindo do jogo..')
+        else:
+         print('Saindo..')
         sleep(1)
         break
-    else:
-        print('Escolha uma opção valida.')
+    if pet.saude <= 0:
+        print(f'Infelizmente {pet.nome}, não resistiu e morreu.. ')
+        break
+
 
